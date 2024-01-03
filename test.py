@@ -2,7 +2,7 @@ import requests
 import json
 
 # Remplacez 'YOUR_API_KEY' par votre clé API Mistral
-mistral_api_key = 'GQGwQuAbTARwpFaPOm29ktgplyWmFMho'
+mistral_api_key = 'YOUR_API_KEY'
 
 # URL de l'API
 url = 'https://api.mistral.ai/v1/chat/completions'
