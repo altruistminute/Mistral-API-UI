@@ -7,7 +7,7 @@
 
 ```
 pip install requests
-python -m testgraphic
+python -m test
 ```
 
  ## For UI (testgraphic.py)
