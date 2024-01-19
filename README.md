@@ -17,4 +17,4 @@ python -m test
  pip install ttkthemes
  python -m testgraphic
  ```
-!(![mistral ui](mistralui.png))
+!![mistral ui](mistralui.png)
