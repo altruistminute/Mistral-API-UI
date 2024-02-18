@@ -18,3 +18,10 @@ python -m test
  python -m testgraphic
  ```
 ![mistral ui](mistralui.png)
+
+ ## For Web
+  ```
+ Test-API-Mistral.html (french version)
+ Mistral-API-Test.html (english version)
+  ```
+ ![mistral web](mistralweb.png)

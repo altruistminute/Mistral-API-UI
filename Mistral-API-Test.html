@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mistral Interface</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        input[type="password"],
+        select,
+        textarea,
+        button {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #2E1437;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="api_key">Mistral API Key:</label>
+        <input type="password" id="api_key">
+        <label for="model">Model:</label>
+        <select id="model">
+            <option value="mistral-tiny">mistral-tiny</option>
+            <option value="mistral-small">mistral-small</option>
+            <option value="mistral-medium">mistral-medium</option>
+        </select>
+        <label for="role">Role:</label>
+        <select id="role">
+            <option value="user">User</option>
+            <option value="assistant">Assistant</option>
+        </select>
+        <label for="content">Request:</label>
+        <textarea id="content" rows="5"></textarea>
+        <button id="send_request">Send Request</button>
+        <div id="result" class="result"></div>
+    </div>
+    <script>
+        document.getElementById("send_request").addEventListener("click", function() {
+            var apiKey = document.getElementById("api_key").value;
+            var model = document.getElementById("model").value;
+            var role = document.getElementById("role").value;
+            var content = document.getElementById("content").value;
+
+            var requestBody = {
+                model: model,
+                messages: [{ role: role, content: content }]
+            };
+
+            fetch("https://api.mistral.ai/v1/chat/completions", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": "Bearer " + apiKey
+                },
+                body: JSON.stringify(requestBody)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error during request. Status code: " + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                var result = data.choices[0].message.content;
+                document.getElementById("result").innerText = result;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert('Error: ' + error.message);
+            });
+        });
+    </script>
+</body>
+</html>
