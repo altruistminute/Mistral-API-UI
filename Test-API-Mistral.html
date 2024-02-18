@@ -36,6 +36,11 @@
             color: #000000;
             border: none;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #cccccc;
         }
 
         .result {
@@ -53,20 +58,20 @@
 </head>
 <body>
     <div class="container">
-        <label for="api_key">Clé API Mistral:</label>
+        <label for="api_key">Clé API Mistral :</label>
         <input type="password" id="api_key">
-        <label for="model">Modèle:</label>
+        <label for="model">Modèle :</label>
         <select id="model">
             <option value="mistral-tiny">mistral-tiny</option>
             <option value="mistral-small">mistral-small</option>
             <option value="mistral-medium">mistral-medium</option>
         </select>
-        <label for="role">Rôle:</label>
+        <label for="role">Rôle :</label>
         <select id="role">
             <option value="user">Utilisateur</option>
             <option value="assistant">Assistant</option>
         </select>
-        <label for="content">Requête:</label>
+        <label for="content">Requête :</label>
         <textarea id="content" rows="5"></textarea>
         <button id="send_request">Envoyer Requête</button>
         <div id="result" class="result"></div>
@@ -103,8 +108,8 @@
                 document.getElementById("result").innerText = result;
             })
             .catch(error => {
-                console.error("Erreur:", error);
-                alert('Erreur: ' + error.message);
+                console.error("Erreur :", error);
+                alert('Erreur : ' + error.message);
             });
         });
     </script>
